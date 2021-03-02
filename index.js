@@ -2,6 +2,7 @@ let box =Array.from(document.querySelectorAll("button"))  // array of all the bu
 let textdiv = document.querySelector("#game_status") // the text down of all the buttons
 
 
+
 const winningCombinations = [
     // array of all the cases of wins
     [box[0], box[1], box[2]],
@@ -27,14 +28,40 @@ function winner(){
             winningCombinations[i][2].style.backgroundColor="lightGreen"
              // show the winner name
             textdiv.textContent="the winner is"+" "+winningCombinations[i][0].innerHTML
+           
             // remove click from each button in the end of the game
             box.forEach(winner=>{
                 winner.removeEventListener('click',changerLeText)
             })
+            // creat button for replay
+           
+textdiv.appendChild(document.createElement('button')).textContent="Play Again"
+let playAgain=document.querySelector("#game_status button")
+playAgain.style.fontSize=20+"px"
+            playAgain.style.display="block"
+           
+              // for replay again
+let count=0
+playAgain.addEventListener('click',function(){
+ count++
+if(count>0){
+    playAgain.style.display="none"
+    textdiv.textContent=" lets play Again"
+    box.forEach(winner=>{
+        winner.innerHTML=""
+        winningCombinations[i][0].style.backgroundColor="white"
+        winningCombinations[i][1].style.backgroundColor="white"
+        winningCombinations[i][2].style.backgroundColor="white"
+        winner.addEventListener('click',changerLeText)
+    })
+ 
+ }
+ })
+//  end of for playAgain
         }
-        
 }
 }
+
 
 //show the X or O by clikcing
 let turne=true
@@ -44,6 +71,7 @@ function changerLeText(e){
         textdiv.textContent= "is O turn"
         e.target.removeEventListener('click',changerLeText )// remove click from each button if it not the playes trune
         turne=false
+        
     }else{
         e.target.innerHTML="O"
         textdiv.textContent= "is X turn"
