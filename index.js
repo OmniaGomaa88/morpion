@@ -1,9 +1,9 @@
 let box =Array.from(document.querySelectorAll("button"))
 let textdiv = document.querySelector("#game_status")
 
-// vrifier frist les valeurs horizontal
 
 const winningCombinations = [
+    // array of 
     [box[0], box[1], box[2]],
     [box[3], box[4], box[5]],
     [box[6], box[7], box[8]],
@@ -30,17 +30,19 @@ function winner(){
 }
 
 // donn le text X O
-let count=0
+let turne=true
 function changerLeText(e){
-
-    if(count%2==0){
+    if(turne){
         e.target.innerHTML="X"
         textdiv.textContent= "is O turn"
+        e.target.removeEventListener('click',changerLeText )// remove click 
+        turne=false
     }else{
         e.target.innerHTML="O"
         textdiv.textContent= "is X turn"
+        e.target.removeEventListener('click',changerLeText );// remove click 
+        turne=true
     }
-    count++
     winner()
 }
 
