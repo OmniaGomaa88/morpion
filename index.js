@@ -1,18 +1,18 @@
-let box =Array.from(document.querySelectorAll("button"))  // array of all the buttons
+let boxs =Array.from(document.querySelectorAll("button"))  // array of all the buttons
 let textdiv = document.querySelector("#game_status") // the text down of all the buttons
 
 
 
 const winningCombinations = [
     // array of all the cases of wins
-    [box[0], box[1], box[2]],
-    [box[3], box[4], box[5]],
-    [box[6], box[7], box[8]],
-    [box[0], box[3], box[6]],
-    [box[1], box[4], box[7]],
-    [box[2], box[5], box[8]],
-    [box[0], box[4], box[8]],
-    [box[2], box[4], box[6]]
+    [boxs[0], boxs[1], boxs[2]],
+    [boxs[3], boxs[4], boxs[5]],
+    [boxs[6], boxs[7], boxs[8]],
+    [boxs[0], boxs[3], boxs[6]],
+    [boxs[1], boxs[4], boxs[7]],
+    [boxs[2], boxs[5], boxs[8]],
+    [boxs[0], boxs[4], boxs[8]],
+    [boxs[2], boxs[4], boxs[6]]
 ]
 // function for cheking how is the winner
 function winner(){
@@ -30,29 +30,27 @@ function winner(){
             textdiv.textContent="the winner is"+" "+winningCombinations[i][0].innerHTML
            
             // remove click from each button in the end of the game
-            box.forEach(winner=>{
-                winner.removeEventListener('click',changerLeText)
+            boxs.forEach(box=>{
+                box.removeEventListener('click',changerLeText)
             })
-            // creat button for replay
-           
+            // creat button for replay again
 textdiv.appendChild(document.createElement('button')).textContent="Play Again"
 let playAgain=document.querySelector("#game_status button")
 playAgain.style.fontSize=20+"px"
             playAgain.style.display="block"
-           
-              // for replay again
-let count=0
+let count=0// counter for checking if play Again button is clicked
 playAgain.addEventListener('click',function(){
  count++
-if(count>0){
-    playAgain.style.display="none"
-    textdiv.textContent=" lets play Again"
-    box.forEach(winner=>{
-        winner.innerHTML=""
+if(count>0){// checking if play Again button is clicked
+    playAgain.style.display="none"// the play again button disaper after cliked
+    textdiv.textContent="lets play Again"
+    // the boxs retun white and whithout text
+    boxs.forEach(box=>{
+        box.innerHTML=""
         winningCombinations[i][0].style.backgroundColor="white"
         winningCombinations[i][1].style.backgroundColor="white"
         winningCombinations[i][2].style.backgroundColor="white"
-        winner.addEventListener('click',changerLeText)
+        box.addEventListener('click',changerLeText)
     })
  
  }
@@ -83,8 +81,8 @@ function changerLeText(e){
     
 }
 
-box.forEach(button=>{
-    button.addEventListener('click', changerLeText)
+boxs.forEach(box=>{
+    box.addEventListener('click', changerLeText)
 })
 
 
