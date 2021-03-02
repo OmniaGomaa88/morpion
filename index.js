@@ -1,4 +1,5 @@
 let box =Array.from(document.querySelectorAll("button"))
+let textdiv = document.querySelector("#game_status")
 
 // vrifier frist les valeurs horizontal
 
@@ -22,7 +23,9 @@ function winner(){
             winningCombinations[i][0].style.backgroundColor="green"
             winningCombinations[i][1].style.backgroundColor="green"
             winningCombinations[i][2].style.backgroundColor="green"
+            textdiv.textContent="the winner is"+" "+winningCombinations[i][0].innerHTML
         }
+        
 }
 }
 
@@ -32,8 +35,10 @@ function changerLeText(e){
 
     if(count%2==0){
         e.target.innerHTML="X"
+        textdiv.textContent= "is O turn"
     }else{
         e.target.innerHTML="O"
+        textdiv.textContent= "is X turn"
     }
     count++
     winner()
